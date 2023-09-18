@@ -63,6 +63,10 @@ const ChartsContainer = styled.div`
     margin-left: 118px;
   }
 
+  @media (max-width: 1028px) {
+    margin-left: 100px;
+  }
+
 `;
 
 const LowerChartsContainer = styled.div`
