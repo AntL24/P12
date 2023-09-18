@@ -28,15 +28,10 @@ const LowerContainer = styled.div`
   padding-bottom: 40px;
   padding-right: 40px;
 
-  @media (max-width: 1500px) {
-    // margin-left: 161px;
-  }
 
   @media (max-width: 1028px) {
     // margin-left: 141px;
     flex-direction: column-reverse;
-    // background-color: red;
-    // margin-left: 150px;
     padding-right: 0px;
 
   }
@@ -47,7 +42,6 @@ const LowerContainer = styled.div`
 
   @media (max-width: 1028px) {
     flex-direction: column-reverse;
-    //center all properties
     align-items: center;
     justify-content: center;
   }

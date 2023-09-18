@@ -24,6 +24,14 @@ const TabGraph = styled.div`
     margin: 0 auto; 
 `;
 
+const axisStyle = {
+    fontFamily: 'Roboto',
+    fontWeight: '500',
+    fontSize: '14px',
+    fill: '#9B9EAC'
+  };
+  
+
 const renderLegend = (props) => {
     const { payload } = props;
     return (
@@ -85,10 +93,11 @@ const DailyActivityTab = () => {
         <TabContainer>
             <TabGraph>
                 <ResponsiveContainer>
-                    <BarChart barCategoryGap={8} data={data} style={{ backgroundColor: '#fbfbfb' }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="day" />
-                        <YAxis dataKey="calories" orientation="right" />
+                <BarChart barCategoryGap={8} data={data} style={{ backgroundColor: '#fbfbfb' }} margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
+                        <XAxis dataKey="day" tickMargin={20} tick={axisStyle} />
+
+                        <YAxis dataKey="calories" orientation="right" axisLine={false} tickLine={false} tick={axisStyle} />
                         <Tooltip content={<CustomTooltip />} />
                         <Legend content={renderLegend} layout="horizontal" verticalAlign="top" align="right" />
                         <Bar dataKey="kilogram" name="Poids (kg)" fill="#282D30" radius={[10, 10, 0, 0]} barSize={7} />
