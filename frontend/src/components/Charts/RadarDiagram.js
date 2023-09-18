@@ -81,7 +81,7 @@ const SessionRadarChart = () => {
             <ResponsiveContainer width="99%" height="100%">
                 <RadarChart data={performanceData} outerRadius="75%">
                     <PolarGrid gridType='polygon' radialLines={false} polarRadius={[0, 15, 30, 50, 72]} stroke="white" />
-                    <PolarAngleAxis dataKey="subject" stroke="white" tickLine={false} fontSize={12} fontWeight="bold" />
+                    <PolarAngleAxis dataKey="subject" stroke="white" tickLine={false} fontSize={12} fontWeight="500" />
                     <Radar name="Session" dataKey="fullMark" stroke="#FF0000" fill="#FF0000" fillOpacity={0.6} />
                 </RadarChart>
             </ResponsiveContainer>

@@ -28,18 +28,19 @@ const renderLegend = (props) => {
     const { payload } = props;
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', marginTop: '15px', paddingLeft: '20px' }}>
-            <span style={{ fontSize: '15px', color: '#20253A', fontWeight: '500' }}>Activité quotidienne</span>
+            <span style={{ fontSize: '15px', color: '#20253A', fontWeight: '500', fontFamily: 'Roboto' }}>Activité quotidienne</span>
             <ul style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: 0, padding: 0 }}>
                 {payload.map((entry, index) => (
                     <li key={`item-${index}`} style={{ listStyle: 'none', display: 'inline-flex', alignItems: 'center', marginRight: '20px' }}>
                         <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: entry.color, marginRight: '5px' }}></span>
-                        <span style={{ fontSize: '14px', color: '#74798C', fontWeight: '500' }}>{entry.value}</span>
+                        <span style={{ fontSize: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? '14px' : '14px', color: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? '#74798C' : '#74798C', fontWeight: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? '500' : '500', fontFamily: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? 'Roboto' : 'inherit' }}>{entry.value}</span>
                     </li>
                 ))}
             </ul>
         </div>
     );
 };
+
 
 const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {

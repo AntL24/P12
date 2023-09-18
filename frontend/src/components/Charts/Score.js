@@ -86,13 +86,13 @@ const ScoreChart = () => {
                     >
                         <Cell fill="red" />
                     </Pie>
-                    <text x={100} y={70} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '26px', fontWeight: 'bold', fill: '#282D30' }}>
+                    <text x={100} y={70} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '26px', fontWeight: '700', fill: '#282D30' }}>
                         12%
                     </text>
-                    <text x={100} y={100} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '16px', fontWeight: 'bold', fill: '#74798C' }}>
+                    <text x={100} y={100} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '16px', fontWeight: '500', fill: '#74798C' }}>
                         de votre
                     </text>
-                    <text x={100} y={125} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '16px', fontWeight: 'bold', fill: '#74798C' }}>
+                    <text x={100} y={125} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '16px', fontWeight: '500', fill: '#74798C' }}>
                         objectif
                     </text>
                 </PieChart>

@@ -144,9 +144,9 @@ const FoodIntakeOfTheDay = () => {
                     <IntakeQty>
                         {new Intl.NumberFormat("en-IN", {
                             maximumSignificantDigits: 3,
-                        }).format(foodIntake.calorieCount || 0)} gr
+                        }).format(foodIntake.calorieCount || 0)}Kcal
                     </IntakeQty>
-                    <IntakeType>kcal</IntakeType>
+                    <IntakeType>Calories</IntakeType>
                 </IntakeValuesContainer>
             </IntakeContainer>
 
@@ -158,9 +158,9 @@ const FoodIntakeOfTheDay = () => {
                     <IntakeQty>
                         {new Intl.NumberFormat("en-IN", {
                             maximumSignificantDigits: 3,
-                        }).format(foodIntake.proteinCount || 0)} gr
+                        }).format(foodIntake.proteinCount || 0)}g
                     </IntakeQty>
-                    <IntakeType>kcal</IntakeType>
+                    <IntakeType>Protéines</IntakeType>
                 </IntakeValuesContainer>
             </IntakeContainer>
 
@@ -172,9 +172,9 @@ const FoodIntakeOfTheDay = () => {
                     <IntakeQty>
                         {new Intl.NumberFormat("en-IN", {
                             maximumSignificantDigits: 3,
-                        }).format(foodIntake.carbohydrateCount || 0)} gr
+                        }).format(foodIntake.carbohydrateCount || 0)}g
                     </IntakeQty>
-                    <IntakeType>kcal</IntakeType>
+                    <IntakeType>Glucides</IntakeType>
                 </IntakeValuesContainer>
             </IntakeContainer>
 
@@ -186,9 +186,9 @@ const FoodIntakeOfTheDay = () => {
                     <IntakeQty>
                         {new Intl.NumberFormat("en-IN", {
                             maximumSignificantDigits: 3,
-                        }).format(foodIntake.lipidCount || 0)} gr
+                        }).format(foodIntake.lipidCount || 0)}g
                     </IntakeQty>
-                    <IntakeType>kcal</IntakeType>
+                    <IntakeType>Lipides</IntakeType>
                 </IntakeValuesContainer>
             </IntakeContainer>
         </FoodIntakeCard>

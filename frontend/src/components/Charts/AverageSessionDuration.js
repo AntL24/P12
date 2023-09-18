@@ -26,8 +26,9 @@ const Title = styled.div`
   top: 5px;
   left: 5px;
   width: calc(100% - 79px - 10px);
-  color: white;
-  font-weight: bold;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 15px;
   opacity: 0.5;
 `;
 
@@ -36,12 +37,12 @@ const Legend = styled.div`
   bottom: 5px;
   left: 5px;
   width: calc(100% - 10px);
-  color: white;
+  color: #FFFFFF;
   opacity: 0.5;
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 500;
 `;
 
 const TooltipStyle = styled.div`
