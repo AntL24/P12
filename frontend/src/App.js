@@ -3,8 +3,8 @@ import './App.css';
 
 import HorizontalNavbar from './Layout/HorizontalNavbar';
 import VerticalNavbar from './Layout/VerticalNavbar';
-import WelcomeHeader from './components/MainContentComponents/WelcomeHeader';
-import FoodIntakeOfTheDay from './components/MainContentComponents/FoodIntakeOfTheDay';
+import WelcomeHeader from './components/OtherComponents/WelcomeHeader';
+import FoodIntakeOfTheDay from './components/OtherComponents/FoodIntakeOfTheDay';
 import DailyActivity from './components/Charts/DailyActivity';
 import AverageSessionDuration from './components/Charts/AverageSessionDuration';
 import RadarDiagram from './components/Charts/RadarDiagram';
