@@ -17,6 +17,7 @@ const ChartContainer = styled.div`
 
     @media (max-width: 1028px) {
         width: 1028px;
+        height: 540px;
     }
 `;
 
@@ -28,6 +29,11 @@ const PieChartWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 1028px) {
+        width: 400px;
+        height: 400px;
+    }
 `;
 
 const ScoreLabel = styled.span`
@@ -37,15 +43,23 @@ const ScoreLabel = styled.span`
     font-size: 16px;
     font-weight: bold;
     color: black;
+
+    @media (max-width: 1028px) {
+        font-size: 32px;
+        top: 10px;
+        left: 15px;
+    }
 `;
 
 const ScoreChart = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1028);
     const userId = 12;
 
     useEffect(() => {
+        // Fetch the data
         const fetchData = async () => {
             try {
                 const response = await fetchUserData(userId);
@@ -59,7 +73,21 @@ const ScoreChart = () => {
         };
 
         fetchData();
+
+        // Use matchMedia to actively listen for viewport changes
+        const mobileQuery = window.matchMedia('(max-width: 1028px)');
+        const handleViewportChange = (e) => {
+            setIsMobile(e.matches);
+        }
+        mobileQuery.addEventListener('change', handleViewportChange);
+        // Initialize state based on the current viewport
+        handleViewportChange(mobileQuery);
+
+        // Cleanup on component to avoid errors and memory leaks
+        return () => mobileQuery.removeEventListener('change', handleViewportChange);
+
     }, [userId]);
+
 
     if (loading) return <div>Chargement...</div>;
     if (error) return <div>Erreur: {error}</div>;
@@ -70,13 +98,13 @@ const ScoreChart = () => {
     return (
         <ChartContainer>
             <PieChartWrapper>
-                <PieChart width={200} height={200}>
+                <PieChart width={isMobile ? 450 : 200} height={isMobile ? 450 : 200}>
                     <Pie
                         data={data}
-                        cx={100}
-                        cy={100}
-                        innerRadius={80}
-                        outerRadius={90}
+                        cx={isMobile ? 225 : 100}
+                        cy={isMobile ? 225 : 100}
+                        innerRadius={isMobile ? 192 : 80}
+                        outerRadius={isMobile ? 218 : 90}
                         paddingAngle={5}
                         dataKey="value"
                         startAngle={90}
@@ -86,13 +114,13 @@ const ScoreChart = () => {
                     >
                         <Cell fill="red" />
                     </Pie>
-                    <text x={100} y={70} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '26px', fontWeight: '700', fill: '#282D30' }}>
-                        12%
+                    <text x={isMobile ? 225 : 100} y={isMobile ? 155 : 70} textAnchor="middle" dominantBaseline="central" style={{ fontSize: isMobile ? '50px' : '26px', fontWeight: '700', fill: '#282D30' }}>
+                        {userData.displayScore}
                     </text>
-                    <text x={100} y={100} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '16px', fontWeight: '500', fill: '#74798C' }}>
+                    <text x={isMobile ? 225 : 100} y={isMobile ? 225 : 100} textAnchor="middle" dominantBaseline="central" style={{ fontSize: isMobile ? '30px' : '16px', fontWeight: '500', fill: '#74798C' }}>
                         de votre
                     </text>
-                    <text x={100} y={125} textAnchor="middle" dominantBaseline="central" style={{ fontSize: '16px', fontWeight: '500', fill: '#74798C' }}>
+                    <text x={isMobile ? 225 : 100} y={isMobile ? 270 : 125} textAnchor="middle" dominantBaseline="central" style={{ fontSize: isMobile ? '30px' : '16px', fontWeight: '500', fill: '#74798C' }}>
                         objectif
                     </text>
                 </PieChart>

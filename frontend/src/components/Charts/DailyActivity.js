@@ -21,51 +21,53 @@ const TabGraph = styled.div`
     height: 320px; 
     background-color: #fff;
     border-radius: 5px;
-    margin: 0 auto; 
+    margin: 0 auto;
+    @media (max-width: 1028px) {
+        height: 540px;
+        width: 1028px;
+    }
 `;
 
-const axisStyle = {
-    fontFamily: 'Roboto',
-    fontWeight: '500',
-    fontSize: '14px',
-    fill: '#9B9EAC'
-  };
-  
+const useIsSmallScreen = () => {
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1028);
+    
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 1028px)");
+        const handleWindowSizeChange = (e) => setIsSmallScreen(e.matches);
+        
+        handleWindowSizeChange(mediaQuery);
+        mediaQuery.addEventListener('change', handleWindowSizeChange);
 
-const renderLegend = (props) => {
-    const { payload } = props;
-    return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', marginTop: '15px', paddingLeft: '20px' }}>
-            <span style={{ fontSize: '15px', color: '#20253A', fontWeight: '500', fontFamily: 'Roboto' }}>Activité quotidienne</span>
-            <ul style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: 0, padding: 0 }}>
-                {payload.map((entry, index) => (
-                    <li key={`item-${index}`} style={{ listStyle: 'none', display: 'inline-flex', alignItems: 'center', marginRight: '20px' }}>
-                        <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: entry.color, marginRight: '5px' }}></span>
-                        <span style={{ fontSize: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? '14px' : '14px', color: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? '#74798C' : '#74798C', fontWeight: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? '500' : '500', fontFamily: (entry.value === "Poids (kg)" || entry.value === "Calories brûlées (kcal)") ? 'Roboto' : 'inherit' }}>{entry.value}</span>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
+        return () => {
+            mediaQuery.removeEventListener('change', handleWindowSizeChange);
+        };
+    }, []);
 
-
-const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-        return (
-            <div style={{ backgroundColor: '#E60000', padding: '10px' }}>
-                <p style={{ margin: '0', color: 'white' }}>{`${payload[0].value}kg`}</p>
-                <div style={{ height: '20px' }}></div>
-                <p style={{ margin: '0', color: 'white' }}>{`${payload[1].value}kcal`}</p>
-            </div>
-        );
-    }
-    return null;
+    return isSmallScreen;
 };
 
 const DailyActivityTab = () => {
     const [data, setData] = useState([]);
     const userId = 12;
+    const isSmallScreen = useIsSmallScreen();
+
+    const axisStyle = {
+        fontFamily: 'Roboto',
+        fontWeight: '500',
+        fontSize: isSmallScreen ? '25px' : '14px',
+        fill: '#9B9EAC',
+    };
+
+    const legendTitleStyle = {
+        fontSize: isSmallScreen ? '26px' : '15px',
+        color: '#20253A',
+        fontWeight: '500',
+        fontFamily: 'Roboto',
+    };
+
+    const legendStyle = {
+        fontSize: isSmallScreen ? '26px' : '14px',
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -89,14 +91,49 @@ const DailyActivityTab = () => {
         fetchData();
     }, [userId]);
 
+    const renderLegend = (props) => {
+        const { payload } = props;
+
+        return (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', marginTop: '15px', paddingLeft: '20px' }}>
+                <span style={legendTitleStyle}>Activité quotidienne</span>
+                <ul style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', margin: 0, padding: 0 }}>
+                    {payload.map((entry, index) => (
+                        <li key={`item-${index}`} style={{ listStyle: 'none', display: 'inline-flex', alignItems: 'center', marginRight: '20px' }}>
+                            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: entry.color, marginRight: '5px' }}></span>
+                            <span style={{
+                                fontSize: legendStyle.fontSize,
+                                color: '#74798C',
+                                fontWeight: '500',
+                                fontFamily: 'Roboto'
+                            }}>{entry.value}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    };
+
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div style={{ backgroundColor: '#E60000', padding: '10px' }}>
+                    <p style={{ margin: '0', color: 'white' }}>{`${payload[0].value}kg`}</p>
+                    <div style={{ height: '20px' }}></div>
+                    <p style={{ margin: '0', color: 'white' }}>{`${payload[1].value}kcal`}</p>
+                </div>
+            );
+        }
+        return null;
+    };
+
     return (
         <TabContainer>
             <TabGraph>
                 <ResponsiveContainer>
-                <BarChart barCategoryGap={8} data={data} style={{ backgroundColor: '#fbfbfb' }} margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
+                    <BarChart barCategoryGap={8} data={data} style={{ backgroundColor: '#fbfbfb' }} margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
+                        <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
                         <XAxis dataKey="day" tickMargin={20} tick={axisStyle} />
-
                         <YAxis dataKey="calories" orientation="right" axisLine={false} tickLine={false} tick={axisStyle} />
                         <Tooltip content={<CustomTooltip />} />
                         <Legend content={renderLegend} layout="horizontal" verticalAlign="top" align="right" />
