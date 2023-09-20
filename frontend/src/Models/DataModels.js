@@ -1,6 +1,6 @@
-// Data Models for the charts and graphs
-// Externalized to ensure consistency across the application
-// If API data is not consistent, we can adapt the models here
+//Data Models for the charts and graphs
+//Externalized to ensure consistency across the application
+//If API data is not consistent, we can adapt the models here
 
 export class SessionData {
     constructor(rawData) {
@@ -15,7 +15,7 @@ export class SessionData {
     }
 
     convertDayNumberToName(dayNumber) {
-        const days = ["", "L", "M", "M", "J", "V", "S", "D"];
+        const days = ["", "L", "M", "M", "J", "V", "S", "D"];//Empty string to start the array at index 1, as the API does
         return days[dayNumber];
     }
 }

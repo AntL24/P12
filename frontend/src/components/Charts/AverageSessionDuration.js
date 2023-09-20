@@ -1,28 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { LineChart, YAxis, Line, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
 import styled from 'styled-components';
+
 import { fetchUserAverageSessions } from '../../Services/apiService';
 import { SessionData } from '../../Models/DataModels';
 
 import useIsMobile from '../../Hooks/useIsMobile';
 
-// const useIsSmallScreen = () => {
-//     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1028);
-    
-//     useEffect(() => {
-//         const mediaQuery = window.matchMedia("(max-width: 1028px)");
-//         const handleWindowSizeChange = () => setIsSmallScreen(mediaQuery.matches);
-        
-//         handleWindowSizeChange();
-//         mediaQuery.addEventListener("change", handleWindowSizeChange);
+const ChartContainer = styled.div`
+  width: 258px;
+  height: 263px;
+  background-color: red;
+  position: relative;
+  border-radius: 5px;
 
-//         return () => {
-//             mediaQuery.removeEventListener("change", handleWindowSizeChange);
-//         };
-//     }, []);
+  @media (max-width: 1028px) {
+    width: 1028px;
+    height: 540px;
+  }
+`;
 
-//     return isSmallScreen;
-// };
+const Title = styled.div`
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 79px - 10px);
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: ${props => props.fontSize};
+  opacity: 0.5;
+`;
+
+const Legend = styled.div`
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  color: #FFFFFF;
+  opacity: 0.5;
+  display: flex;
+  justify-content: space-between;
+  font-size: ${props => props.fontSize};
+  font-weight: 500;
+`;
 
 const AverageSessionDuration = () => {
     const isMobile = useIsMobile();
@@ -80,7 +100,7 @@ const AverageSessionDuration = () => {
                         content={<CustomTooltipContent />}
                         formatter={(value) => [`${value} min`, 'Durée']}
                         itemStyle={{ color: 'black' }}
-                        cursor={<CustomCursor />}
+                        cursor={<CustomCursor isMobile={isMobile} />}
                     />
                 </LineChart>
             </ResponsiveContainer>
@@ -88,43 +108,7 @@ const AverageSessionDuration = () => {
     );
 };
 
-const ChartContainer = styled.div`
-  width: 258px;
-  height: 263px;
-  background-color: red;
-  position: relative;
-  border-radius: 5px;
-
-  @media (max-width: 1028px) {
-    width: 1028px;
-    height: 540px;
-  }
-`;
-
-const Title = styled.div`
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: calc(100% - 79px - 10px);
-  color: #FFFFFF;
-  font-weight: 500;
-  font-size: ${props => props.fontSize};
-  opacity: 0.5;
-`;
-
-const Legend = styled.div`
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  width: calc(100% - 10px);
-  color: #FFFFFF;
-  opacity: 0.5;
-  display: flex;
-  justify-content: space-between;
-  font-size: ${props => props.fontSize};
-  font-weight: 500;
-`;
-
+//Customized popup on hover
 const CustomTooltipContent = (props) => {
     const { active, payload } = props;
     if (!active) return null;
@@ -136,8 +120,9 @@ const CustomTooltipContent = (props) => {
     );
 };
 
-const CustomCursor = ({ points }) => (
-    <Rectangle fill="black" opacity={0.1} x={points[1].x} width={500} height={300} />
+//Black rectangle on the right of the tooltip
+const CustomCursor = ({ points, isMobile }) => (
+    isMobile ? null : <Rectangle fill="black" opacity={0.1} x={points[1].x} width={500} height={300} />
 );
 
 export default AverageSessionDuration;

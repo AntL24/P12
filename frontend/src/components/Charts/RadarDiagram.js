@@ -34,6 +34,7 @@ const SessionRadarChart = () => {
     const isMobile = useIsMobile();
     const userId = 12;
 
+    //UseMemo is used to avoid the recreation of the array at each render
     const orderedSubjects = useMemo(() => [
         'Intensité', 'Vitesse', 'Force', 'Endurance', 'Énergie', 'Cardio'
     ], []);
@@ -90,7 +91,7 @@ const SessionRadarChart = () => {
             <Text
                 {...rest}
                 verticalAnchor="middle"
-                y={y + (y - cy) / 9}
+                y={y + (y - cy) / 9} //This formula means that the text will be placed at 1/9 of the distance between the center and the point
                 x={x + (x - cx) / 9}
             >
                 {payload.value}
