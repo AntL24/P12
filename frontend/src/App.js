@@ -15,6 +15,7 @@ import styled from 'styled-components';
 const MainContainer = styled.main`
   position: absolute;
   max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -49,6 +50,7 @@ const LowerContainer = styled.div`
 
 const ChartsContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 30px;
   margin-left: 60px;

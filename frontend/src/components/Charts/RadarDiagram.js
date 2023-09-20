@@ -14,7 +14,8 @@ const ChartContainer = styled.div`
     border-radius: 5px;
     
     @media (max-width: 1028px) {
-        width: 1028px;
+        max-width: 1028px;
+        width: 100%;
         height: 540px;
         display: flex;
         justify-content: center;
@@ -99,6 +100,7 @@ const SessionRadarChart = () => {
         );
     }
 
+    //Display the chart if the data is loaded, else display a message
     if (loading) return <div>Chargement...</div>;
     if (error) return <div>Erreur: {error}</div>;
     if (performanceData.length === 0) return <div>Données non trouvées</div>;

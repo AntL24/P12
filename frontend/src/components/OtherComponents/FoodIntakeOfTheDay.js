@@ -14,13 +14,15 @@ const FoodIntakeCard = styled.div`
     width: 10px;
     
     @media (max-width: 1028px) {
+        max-width: 1028px;
+
         margin-top: 0px;
         width: 100%;
        margin-right: 0px;
        margin-bottom: 40px;
        margin-left: 100px;
-       grid-template-columns: 1fr 1fr 1fr 1fr;
-       grid-template-rows: 1fr;
+       grid-template-columns: 1fr 1fr;
+       grid-template-rows: 2fr;
       }
 `;
 
@@ -91,7 +93,8 @@ const IntakeContainer = styled.div`
     padding-right: 36px;
     padding-left: 36px;
     @media (max-width: 1028px) {
-        width: 160px;
+        width: unset;
+        
     }
 `;
 

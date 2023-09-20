@@ -14,19 +14,20 @@ const TabContainer = styled.div`
      display: flex;
      flex-direction: column;
      @media (max-width: 1028px) {
-         width: 1028px;
+         max-width: 1028px;
+         width: 100%;
      }
 `;
 
 const TabGraph = styled.div`
-    width: 835px;
+    width: 100%;
     height: 320px; 
     background-color: #fff;
     border-radius: 5px;
     margin: 0 auto;
     @media (max-width: 1028px) {
         height: 540px;
-        width: 1028px;
+        max-width: 1028px;
     }
 `;
 

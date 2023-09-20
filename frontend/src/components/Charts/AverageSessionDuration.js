@@ -15,7 +15,8 @@ const ChartContainer = styled.div`
   border-radius: 5px;
 
   @media (max-width: 1028px) {
-    width: 1028px;
+    max-width: 1028px;
+    width: 100%;
     height: 540px;
   }
 `;

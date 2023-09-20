@@ -18,7 +18,8 @@ const ChartContainer = styled.div`
     overflow: hidden;
 
     @media (max-width: 1028px) {
-        width: 1028px;
+        max-width: 1028px;
+        width: 100%;
         height: 540px;
     }
 `;
