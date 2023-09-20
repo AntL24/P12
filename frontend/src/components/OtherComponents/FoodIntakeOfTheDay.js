@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { fetchUserData } from '../../Services/apiService';
-import { FoodIntakeData } from '../Models/DataModels';
+import { FoodIntakeData } from '../../Models/DataModels';
 
 
 const FoodIntakeCard = styled.div`
