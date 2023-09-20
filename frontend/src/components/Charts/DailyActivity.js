@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
 import { fetchUserActivity } from '../../Services/apiService';
-import {ActivityData} from '../Models/DataModels';
+import {ActivityData} from '../../Models/DataModels';
 
 const TabContainer = styled.div`
      width: 100%;

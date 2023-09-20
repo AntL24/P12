@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Text } from 'recharts';
 import styled from 'styled-components';
 import { fetchUserPerformance } from '../../Services/apiService';
-import { PerformanceData } from '../Models/DataModels';
+import { PerformanceData } from '../../Models/DataModels';
 
 const ChartContainer = styled.div`
     width: 258px;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchUserData } from '../../Services/apiService';
 import styled from 'styled-components';
-import { UserData } from '../Models/DataModels';
+import { UserData } from '../../Models/DataModels';
 
 const HeaderContent = styled.header`
     background-color: #ffffff;

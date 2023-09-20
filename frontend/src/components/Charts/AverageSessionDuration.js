@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LineChart, YAxis, Line, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
 import styled from 'styled-components';
 import { fetchUserAverageSessions } from '../../Services/apiService';
-import { SessionData } from '../Models/DataModels';
+import { SessionData } from '../../Models/DataModels';
 
 const useIsSmallScreen = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1028);

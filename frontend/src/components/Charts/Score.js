@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
 import styled from 'styled-components';
 import { fetchUserData } from '../../Services/apiService';
-import { UserScoreData } from '../Models/DataModels';
+import { UserScoreData } from '../../Models/DataModels';
 
 const ChartContainer = styled.div`
     width: 258px;
