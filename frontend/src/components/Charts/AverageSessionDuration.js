@@ -4,26 +4,28 @@ import styled from 'styled-components';
 import { fetchUserAverageSessions } from '../../Services/apiService';
 import { SessionData } from '../../Models/DataModels';
 
-const useIsSmallScreen = () => {
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1028);
+import useIsMobile from '../../Hooks/useIsMobile';
+
+// const useIsSmallScreen = () => {
+//     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1028);
     
-    useEffect(() => {
-        const mediaQuery = window.matchMedia("(max-width: 1028px)");
-        const handleWindowSizeChange = () => setIsSmallScreen(mediaQuery.matches);
+//     useEffect(() => {
+//         const mediaQuery = window.matchMedia("(max-width: 1028px)");
+//         const handleWindowSizeChange = () => setIsSmallScreen(mediaQuery.matches);
         
-        handleWindowSizeChange();
-        mediaQuery.addEventListener("change", handleWindowSizeChange);
+//         handleWindowSizeChange();
+//         mediaQuery.addEventListener("change", handleWindowSizeChange);
 
-        return () => {
-            mediaQuery.removeEventListener("change", handleWindowSizeChange);
-        };
-    }, []);
+//         return () => {
+//             mediaQuery.removeEventListener("change", handleWindowSizeChange);
+//         };
+//     }, []);
 
-    return isSmallScreen;
-};
+//     return isSmallScreen;
+// };
 
 const AverageSessionDuration = () => {
-    const isSmallScreen = useIsSmallScreen();
+    const isMobile = useIsMobile();
     const userId = 12;
     const [data, setData] = useState([]);
 
@@ -40,8 +42,8 @@ const AverageSessionDuration = () => {
 
     return (
         <ChartContainer>
-            <Title fontSize={isSmallScreen ? '25px' : '15px'}>Durée moyenne des sessions</Title>
-            <Legend fontSize={isSmallScreen ? '28px' : '12px'}>
+            <Title fontSize={isMobile ? '25px' : '15px'}>Durée moyenne des sessions</Title>
+            <Legend fontSize={isMobile ? '28px' : '12px'}>
                 <span>L</span>
                 <span>M</span>
                 <span>M</span>
@@ -50,10 +52,10 @@ const AverageSessionDuration = () => {
                 <span>S</span>
                 <span>D</span>
             </Legend>
-            <ResponsiveContainer width="100%" height={isSmallScreen ? "80%" : "100%"}>
+            <ResponsiveContainer width="100%" height={isMobile ? "80%" : "100%"}>
                 <LineChart
                     data={data}
-                    margin={{ top: 40, right: 0, left: 0, bottom: isSmallScreen ? 50 : 30 }}>
+                    margin={{ top: 40, right: 0, left: 0, bottom: isMobile ? 50 : 30 }}>
                     <defs>
                         <linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">
                             <stop offset="0%" stopColor="rgba(255, 255, 255, 0.4032)" />

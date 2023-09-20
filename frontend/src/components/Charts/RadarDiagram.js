@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { fetchUserPerformance } from '../../Services/apiService';
 import { PerformanceData } from '../../Models/DataModels';
 
+import useIsMobile from '../../Hooks/useIsMobile';
+
 const ChartContainer = styled.div`
     width: 258px;
     height: 263px;
@@ -29,7 +31,7 @@ const SessionRadarChart = () => {
     const [performanceData, setPerformanceData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1028);
+    const isMobile = useIsMobile();
     const userId = 12;
 
     const orderedSubjects = useMemo(() => [
@@ -45,6 +47,7 @@ const SessionRadarChart = () => {
         cardio: orderedSubjects[5]
     }), [orderedSubjects]);
 
+    //Fetch the data with the imported function from apiService
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -71,27 +74,16 @@ const SessionRadarChart = () => {
 
         fetchData();
 
-        // Use matchMedia to actively listen for viewport changes
-        const mobileQuery = window.matchMedia('(max-width: 1028px)');
-        const handleViewportChange = (e) => {
-            setIsMobile(e.matches);
-        }
-        mobileQuery.addListener(handleViewportChange);
-        // Initialize state based on the current viewport
-        handleViewportChange(mobileQuery);
+    }, [userId, orderedSubjects, translationMap]); //Dependency : the hook will be called when the userId changes.
 
-        // Cleanup on component unmount
-        return () => mobileQuery.removeListener(handleViewportChange);
 
-    }, [userId, orderedSubjects, translationMap]);
-
-    // Derived state
+    //Change the font size of the polar angle axis depending on the viewport
     const fontSize = isMobile ? 23 : 12;
     const mobilePolarRadius = [0, 30, 60, 100, 150];
     const desktopPolarRadius = [0, 15, 30, 50, 72];
     const currentPolarRadius = isMobile ? mobilePolarRadius : desktopPolarRadius;
 
-    //Customize the polar angle axis
+    //Customize the polar angle axis so that there isn't any overlap
     function renderPolarAngleAxis({ payload, x, y, cx, cy, ...rest }) {
         if (!isMobile) return <text {...rest} x={x} y={y}>{payload.value}</text>;
         return (

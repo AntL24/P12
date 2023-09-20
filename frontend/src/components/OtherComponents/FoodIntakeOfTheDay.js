@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { fetchUserData } from '../../Services/apiService';
 import { FoodIntakeData } from '../../Models/DataModels';
 
-
 const FoodIntakeCard = styled.div`
     display: grid;
     grid-template-columns: repeat(1, 4fr);

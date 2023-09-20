@@ -4,6 +4,8 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend, Responsive
 import { fetchUserActivity } from '../../Services/apiService';
 import {ActivityData} from '../../Models/DataModels';
 
+import useIsMobile from '../../Hooks/useIsMobile';
+
 const TabContainer = styled.div`
      width: 100%;
      height: 100%;
@@ -28,45 +30,27 @@ const TabGraph = styled.div`
     }
 `;
 
-const useIsSmallScreen = () => {
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1028);
-    
-    useEffect(() => {
-        const mediaQuery = window.matchMedia("(max-width: 1028px)");
-        const handleWindowSizeChange = (e) => setIsSmallScreen(e.matches);
-        
-        handleWindowSizeChange(mediaQuery);
-        mediaQuery.addEventListener('change', handleWindowSizeChange);
-
-        return () => {
-            mediaQuery.removeEventListener('change', handleWindowSizeChange);
-        };
-    }, []);
-
-    return isSmallScreen;
-};
-
 const DailyActivityTab = () => {
     const [data, setData] = useState([]);
     const userId = 12;
-    const isSmallScreen = useIsSmallScreen();
+    const isMobile = useIsMobile();
 
     const axisStyle = {
         fontFamily: 'Roboto',
         fontWeight: '500',
-        fontSize: isSmallScreen ? '25px' : '14px',
+        fontSize: isMobile ? '25px' : '14px',
         fill: '#9B9EAC',
     };
 
     const legendTitleStyle = {
-        fontSize: isSmallScreen ? '26px' : '15px',
+        fontSize: isMobile ? '26px' : '15px',
         color: '#20253A',
         fontWeight: '500',
         fontFamily: 'Roboto',
     };
 
     const legendStyle = {
-        fontSize: isSmallScreen ? '26px' : '14px',
+        fontSize: isMobile ? '26px' : '14px',
     };
 
     useEffect(() => {

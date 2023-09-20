@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { fetchUserData } from '../../Services/apiService';
 import { UserScoreData } from '../../Models/DataModels';
 
+import useIsMobile from '../../Hooks/useIsMobile';
+
 const ChartContainer = styled.div`
     width: 258px;
     height: 263px;
@@ -55,11 +57,11 @@ const ScoreChart = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1028);
+    const isMobile = useIsMobile();
     const userId = 12;
 
     useEffect(() => {
-        // Fetch the data
+        //Fetch the data with the imported function from apiService
         const fetchData = async () => {
             try {
                 const response = await fetchUserData(userId);
@@ -73,19 +75,6 @@ const ScoreChart = () => {
         };
 
         fetchData();
-
-        // Use matchMedia to actively listen for viewport changes
-        const mobileQuery = window.matchMedia('(max-width: 1028px)');
-        const handleViewportChange = (e) => {
-            setIsMobile(e.matches);
-        }
-        mobileQuery.addEventListener('change', handleViewportChange);
-        // Initialize state based on the current viewport
-        handleViewportChange(mobileQuery);
-
-        // Cleanup on component to avoid errors and memory leaks
-        return () => mobileQuery.removeEventListener('change', handleViewportChange);
-
     }, [userId]);
 
 
