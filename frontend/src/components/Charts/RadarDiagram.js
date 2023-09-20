@@ -12,14 +12,23 @@ const ChartContainer = styled.div`
     background-color: #2c2c2c; 
     position: relative;
     border-radius: 5px;
-    
-    @media (max-width: 1028px) {
+    @media (max-width: 1400px) {
+        width: 33%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: 
+        // height: 540px;
+        }
+    @media (max-width: 1128px) {
         max-width: 1028px;
         width: 100%;
         height: 540px;
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
 
     & svg {

@@ -8,18 +8,23 @@ import { SessionData } from '../../Models/DataModels';
 import useIsMobile from '../../Hooks/useIsMobile';
 
 const ChartContainer = styled.div`
-  width: 258px;
-  height: 263px;
+width: 258px;
+height: 263px;
   background-color: red;
   position: relative;
   border-radius: 5px;
 
-  @media (max-width: 1028px) {
+  @media (max-width: 1400px) {
+    width: 33%;
+  }
+
+  @media (max-width: 1128px) {
     max-width: 1028px;
     width: 100%;
     height: 540px;
   }
 `;
+
 
 const Title = styled.div`
   position: absolute;
@@ -73,8 +78,9 @@ const AverageSessionDuration = () => {
                 <span>S</span>
                 <span>D</span>
             </Legend>
-            <ResponsiveContainer width="100%" height={isMobile ? "80%" : "100%"}>
+            <ResponsiveContainer width="99%" height={isMobile ? "80%" : "100%"}>
                 <LineChart
+                isAnimationActive={false}
                     data={data}
                     margin={{ top: 40, right: 0, left: 0, bottom: isMobile ? 50 : 30 }}>
                     <defs>
@@ -115,7 +121,7 @@ const CustomTooltipContent = (props) => {
     if (!active) return null;
     const data = payload && payload[0];
     return (
-        <div style={{backgroundColor: 'white', padding: '5px', border: '1px solid #ccc'}}>
+        <div style={{ backgroundColor: 'white', padding: '5px', border: '1px solid #ccc' }}>
             {data ? `${data.value} min` : ""}
         </div>
     );

@@ -3,7 +3,7 @@ import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE 
 
 const baseURL = 'http://localhost:3000/user/';
 
-let useMockData = false; //True = use mock data, false = try to use API data
+let useMockData = false; //=>True = use mock data// =>False = try to use API data//
 
 //Error notification
 let notificationShown = false;

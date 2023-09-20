@@ -14,8 +14,8 @@ import styled from 'styled-components';
 
 const MainContainer = styled.main`
   position: absolute;
-  max-width: 1440px;
   width: 100%;
+  max-width: 1420px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -29,10 +29,15 @@ const LowerContainer = styled.div`
   padding-bottom: 40px;
   padding-right: 40px;
 
+  @media (max-width: 1670px) {
+    width: calc(100% - 505px);
+    margin-left: 100px;
 
-  @media (max-width: 1028px) {
-    // margin-left: 141px;
+
+  @media (max-width: 1400px) {
     flex-direction: column-reverse;
+    width: calc(100% - 350px);
+    margin-left: 150px;
     padding-right: 0px;
 
   }
@@ -41,7 +46,8 @@ const LowerContainer = styled.div`
     margin-left: 101px;
   }
 
-  @media (max-width: 1028px) {
+  @media (max-width: 1128px) {
+    margin-left: 200px;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
@@ -55,10 +61,10 @@ const ChartsContainer = styled.div`
   gap: 30px;
   margin-left: 60px;
 
-  @media (max-width: 1400px) {
-    margin-left: 118px;
+  @media (max-width: 1630px) {
+    max-width: 100%;
+    margin-left: 60;
   }
-
   @media (max-width: 1028px) {
     margin-left: 100px;
   }
@@ -66,11 +72,18 @@ const ChartsContainer = styled.div`
 `;
 
 const LowerChartsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   gap: 30px;
+  align-items: start;
+  @media (max-width: 1630px) {
+    width:100%;
+    max-width: 1028px;
 
-  @media (max-width: 1028px) {
+  }
+
+  @media (max-width: 1128px) {
     display: flex;
     flex-direction: column;
   }

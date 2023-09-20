@@ -13,6 +13,12 @@ const TabContainer = styled.div`
      border-radius: 5px;
      display: flex;
      flex-direction: column;
+    //  @media (max-width: 1470px) {
+    //     display: flex;
+    //     flex-direction: row;
+    //     justify-content: space-between;
+    //     max-width: 1028px;
+    // }
      @media (max-width: 1028px) {
          max-width: 1028px;
          width: 100%;
@@ -25,8 +31,8 @@ const TabGraph = styled.div`
     background-color: #fff;
     border-radius: 5px;
     margin: 0 auto;
-    @media (max-width: 1028px) {
-        height: 540px;
+    @media (max-width: 1470px) {
+        // height: 540px;
         max-width: 1028px;
     }
 `;
@@ -39,19 +45,19 @@ const DailyActivityTab = () => {
     const axisStyle = {
         fontFamily: 'Roboto',
         fontWeight: '500',
-        fontSize: isMobile ? '25px' : '14px',
+        fontSize: isMobile ? '20px' : '14px',
         fill: '#9B9EAC',
     };
 
     const legendTitleStyle = {
-        fontSize: isMobile ? '26px' : '15px',
+        fontSize: isMobile ? '21px' : '15px',
         color: '#20253A',
         fontWeight: '500',
         fontFamily: 'Roboto',
     };
 
     const legendStyle = {
-        fontSize: isMobile ? '26px' : '14px',
+        fontSize: isMobile ? '21px' : '14px',
     };
 
     useEffect(() => {
